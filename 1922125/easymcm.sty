@@ -1,0 +1,230 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% A simple MCM Contest Report Template for basic users
+%% Oringinal template by latexstudio, <latexstudio@hotmail.com>
+%% improved by youjiarui189 (xjtu-blacksmith), <yjr134@163.com>
+%% ע��ȫ���������������˴���ע�ͣ���������ʽ�Ľ�Ϊ���ϵ�ǰ�����淶�İ汾
+%% ���͵�ַ��http://www.cnblogs.com/xjtu-blacksmith/
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{easymcm}[2018/10/02 EasyMCM v5.01]
+\typeout{EasyMCM Package, version v5.01}    %youjiarui189, adding a 'y'
+
+%=========��������==========
+\RequirePackage[a4paper,left=2.5cm,right=2.5cm,top=2.5cm,bottom=1.5cm]{geometry}    %ҳ�߾���ֽ�Ŵ�С
+%\RequirePackage{xcolor}                     % ��ɫ����
+\RequirePackage{fancyhdr}          % ����ҳüҳ�ŵĺ���
+\RequirePackage{graphicx}                   % ��ͼ����
+\RequirePackage{ifthen}                     % �߼��ṹ��������ģ���ļ��õ���
+\RequirePackage{lastpage}                   % ��������һ��ҳ���ĺ���������"Page X of XX"��
+\RequirePackage{paralist}                   % �����޸�itemize���������ĺ���
+
+% ���º�����ԭģ�����У������������������Ĳ����и�¼�ͳ�����������ע�͵��ˣ���Ҫ�����Լ��޸�
+% \RequirePackage{listings}       % ���뻷������
+% \RequirePackage[toc,page,title,titletoc,header]{appendix} % ��¼��������
+
+%===����ͼ�������������ļ���===
+\setlength{\belowcaptionskip}{4pt}
+\setlength{\abovecaptionskip}{4pt}
+
+
+%==========��ѧ��ʽ===========
+\RequirePackage{amsthm,amsfonts}        % ����������
+\RequirePackage{amsmath,bm}
+\RequirePackage{amssymb,mathrsfs}       % AMSLaTeX���ź���
+\RequirePackage{latexsym}
+
+%===========Ŀ¼==============
+\usepackage{titlesec}
+\usepackage{titletoc}
+\setcounter{tocdepth}{3}    % Ŀ¼��ʾ��subsubsection(3)����,��ֻ�赽subsection(2)���Ը�
+\usepackage[font=small,]{caption}   % ʹͼ�������ֺ�Сһ��
+\def\abstractname{Summary}          % ժҪ����
+
+%=========��������===========
+\RequirePackage{longtable,multirow,hhline,tabularx,array}   % ���ֻ����ı�������
+\RequirePackage{flafter}    % ���øú����ɱ���ͼƬ��������������֮ǰ����
+\RequirePackage{pifont,calc}    % ǰ��ʵ����\ding{}������Լ��ٶȣ��������ǵײ㳣�ú���
+\RequirePackage{colortbl,booktabs}  % ��ǩ����
+
+%======��������========
+\RequirePackage[T1]{fontenc}    % ����ʹ��ŷ�����壨��������ĸ��������ĸ��ϣ����ĸ�ȣ�
+\RequirePackage[scaled]{berasans}   % һ���޳������壨��summary sheet�������ã�
+\definecolor{grey}{rgb}{0.91,0.91,0.91} % ������ɫ
+\RequirePackage{url}            % ��ַ��������������ʹ����ַ���Զ�����
+\def\UrlBreaks{\do\A\do\B\do\C\do\D\do\E\do\F\do\G\do\H\do\I\do\J
+\do\K\do\L\do\M\do\N\do\O\do\P\do\Q\do\R\do\S\do\T\do\U\do\V
+\do\W\do\X\do\Y\do\Z\do\[\do\\\do\]\do\^\do\_\do\`\do\a\do\b
+\do\c\do\d\do\e\do\f\do\g\do\h\do\i\do\j\do\k\do\l\do\m\do\n
+\do\o\do\p\do\q\do\r\do\s\do\t\do\u\do\v\do\w\do\x\do\y\do\z
+\do\.\do\@\do\\\do\/\do\!\do\_\do\|\do\;\do\>\do\]\do\)\do\,
+\do\?\do\'\do+\do\=\do\#}
+
+%======��������========
+\setlength{\headheight}{15pt}
+\newcommand{\MCM@control}{2012} % 2012ֻ��һ����ֵ����ֵ���û�����
+\DeclareOption*{\edef\MCM@control{\CurrentOption}}
+
+% ����һЩ�����Ĳ��������ƺţ���������ҳü��Ϣ��
+\ProcessOptions
+\newcommand{\control}{\MCM@control}
+\newcommand{\team}{Team \#\ \MCM@control}
+\newcommand{\contest}{\\MCM/ICM\\ Summary Sheet}
+%\\(Your team's summary should be included as the first page of your electronic submission)
+%\newcommand{\notes}{(Attach a copy of this page to each copy of your solution paper.)}
+
+%==============��ǩ����ͼ�ͽ������õ�����================
+\RequirePackage{ifpdf}      % �ж��Ƿ�������pdfLaTeX
+\ifpdf%
+\RequirePackage{epstopdf}   % pdfLaTeX����ʹ��epsͼƬ���øú���ת��pdf��ʹ��
+\DeclareGraphicsExtensions{.pdf,.jpg,.jpeg,.png}    % ������ͼƬ����
+\RequirePackage[bookmarks=true,%
+    linkcolor=black,%
+    citecolor=black,%
+    colorlinks=true, % ע�͵������򽻲�����Ϊ��ɫ�߿�(��colorlinks��pdfborderͬʱע�͵�)
+    %pdfborder=1,     % ע�͵������򽻲�����Ϊ��ɫ�߿�����ʾ�����ÿ���
+    linkcolor=black,%
+    citecolor=black,%
+    urlcolor=black]{hyperref}
+\else%
+\DeclareGraphicsExtensions{.eps,.ps}    %����Ҫת��epsͼƬ��ʽ
+\ifxetex
+    \RequirePackage[xetex,  % ����xetex
+        pdfstartview=FitH,%
+        CJKbookmarks=true,%
+        bookmarksnumbered=true,%
+        bookmarksopen=true,%
+        colorlinks=true, % ע�͵������򽻲�����Ϊ��ɫ�߿�(��colorlinks��pdfborderͬʱע�͵�)
+        pdfborder=001,   % ע�͵������򽻲�����Ϊ��ɫ�߿�
+        linkcolor=black,%
+        citecolor=black,%
+        urlcolor=black]{hyperref}
+\else
+    \RequirePackage[dvipdfm,  % ����������������
+        pdfstartview=FitH,%
+        CJKbookmarks=true,%
+        bookmarksnumbered=true,%
+        bookmarksopen=true,%
+        colorlinks=true, % ע�͵������򽻲�����Ϊ��ɫ�߿�(��colorlinks��pdfborderͬʱע�͵�)
+        pdfborder=001,   % ע�͵������򽻲�����Ϊ��ɫ�߿�
+        linkcolor=black,%
+        citecolor=black,%
+        urlcolor=black]{hyperref}
+\fi\fi
+
+%===ʹ��ƪ���µ��׶ζ�������===
+\let\@afterindentfalse\@afterindenttrue\@afterindenttrue
+
+%=========Ŀ¼������==========
+\renewcommand\tableofcontents{%
+\centerline{\normalfont\Large\bfseries\contentsname%
+\@mkboth{%
+\MakeUppercase\contentsname}{\MakeUppercase\contentsname}}%
+\vskip 3ex%
+\@starttoc{toc}%
+}
+
+
+% ��������ʹ��һҳ����������������������ͼ���������Ҷ��������������ײ������������������޸Ĳ���
+\setcounter{totalnumber}{6}
+\setcounter{topnumber}{3}
+\setcounter{bottomnumber}{3}
+
+% �ܶ��˷���ȱʡ�ĸ������������ϸ��ˡ�����������
+\renewcommand{\textfraction}{0.15}
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.65}
+\renewcommand{\floatpagefraction}{0.60}
+% ������������������Ϊ�����ɵ�ֵ��---ѡ�ԡ�LaTeX2e��ͼָ�ϡ�
+
+%====summarysheetҳ������====
+\def\@maketitle{%
+	\makesheet%
+	\make@abstract%
+}
+
+%========abstract����������==========
+\def\@abstract{}
+\newbox\@abstract   %���ɻ���
+\setbox\@abstract\hbox{}
+\long\def\abstract{\bgroup\global\setbox\@abstract\vbox\bgroup\hsize\textwidth} % һϵ�����ã�һ�㲻��Ҫ�ٸ�
+\def\endabstract{\egroup\egroup}
+
+%=======ժҪ��������=========
+\def\make@abstract{
+    \par
+    \centerline{\large\bf\abstractname}\vskip5pt\par    %ժҪ����
+    \noindent\usebox\@abstract\par  %ժҪ����
+    \vskip 10pt %�ײ����գ�������Ҫ��ɾȥ
+}
+
+% ͼ�����������ƣ��Ѿ��Ϲ治��Ҫ���޸�
+\renewcommand{\figurename}{Figure}
+\renewcommand{\tablename}{Table}
+
+% �Զ�ʶ����ͼ���ļ��У���ʹ����Щ���������ļ��У�������ͼƬ·��ʱֻ�����ļ�������
+\graphicspath{{./}{./img/}{./fig/}{./image/}{./figure/}{./picture/}}
+
+% ������������������ʵ�ϴ󲿷��������ò��������Ա����Թ�ʹ��
+\newtheorem{Theorem}{Theorem}[section]%
+\newtheorem{Lemma}[Theorem]{Lemma}%
+\newtheorem{Corollary}[Theorem]{Corollary}%
+\newtheorem{Proposition}[Theorem]{Proposition}%
+\newtheorem{Definition}[Theorem]{Definition}%
+\newtheorem{Example}[Theorem]{Example}%
+
+%=====ҳüҳ������=====
+\lhead{\small \team}
+\chead{}
+\rhead{\small Page \thepage\ of \pageref{LastPage}}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+
+% COMAPҪ����summary sheet���⣬ע��ÿ������ʱ�п�����С���������Թ�����������ʽΪ׼������С���޸ģ�
+\newcommand{\@problem}[1]{}
+\newcommand{\problem}[1]{\gdef\@problem{#1}}
+\def\makesheet{ %����sheetͷ�����Ķ���
+    \null
+    \vskip 1em % ������������������sheetͷ�Ͷ����ļ��࣬����Ҫ�������ࣨ����ժҪ�Ų��£���ע�͵�����������
+    \begingroup\fontfamily{fvs}\fontseries{m}\selectfont  %��������
+    % ���ߵ��б�
+    \noindent\begin{tabularx}{0.3\textwidth}{lX}
+    \multicolumn{2}{l}{For office use only}\\
+        T1&\rule{3cm}{0.5pt}\\
+        T2&\rule{3cm}{0.5pt}\\
+        T3&\rule{3cm}{0.5pt}\\
+        T4&\rule{3cm}{0.5pt}\\
+    \end{tabularx}\hspace{\fill}
+    % �м��Ŀ��ƺŻ���
+    \begin{minipage}{0.33\textwidth}
+        \centering
+        Team Control Number\\[10pt]
+        {\fontsize{38pt}{25pt}\selectfont  \textbf{\MCM@control} }\normalsize\\[10pt]
+        Problem Chosen\\[10pt]
+        {\fontsize{18pt}{\baselineskip}\selectfont \textbf{\@problem}}\normalsize\\
+    \end{minipage}\hspace{\fill}
+    % �ұߵ��б�
+    \begin{tabularx}{0.28\textwidth}{lX}
+        \multicolumn{2}{l}{For office use only}\\
+        F1&\rule{3cm}{0.5pt}\\
+        F2&\rule{3cm}{0.5pt}\\
+        F3&\rule{3cm}{0.5pt}\\
+        F4&\rule{3cm}{0.5pt}\\
+    \end{tabularx}
+    \vspace*{1ex}   % ����һ����
+    \vskip 1em
+    \noindent\rule{\textwidth}{0.5pt}   % ����һ����
+    % ���ɶ�������
+    % ��ע�⣺�μ�ICM�Ķ��뽫�����ı�����ΪInterdisciplinary Contest in Modeling (ICM)��
+    \begin{center}
+        \textbf{\the\year\  \contest}\\
+        \notes
+    \end{center}
+    \begin{center}
+    \Large\bf\@title    % �������ı��⣬ע���ֺſ��Լ��޸�
+    \end{center}
+    \endgroup
+}
+\pagestyle{fancy}
+\endinput

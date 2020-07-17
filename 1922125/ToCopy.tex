@@ -1,0 +1,72 @@
+%第一块代码：强制位置，不能随便移动的图片。
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.6]{standard.PNG}
+    \caption{evaluation criterion}
+    \label{1}
+\end{figure}
+
+%第二块代码：大括号，左对齐，有标号
+\begin{equation}
+    s.t\left\{
+    \begin{array}{lr}
+    A_{j total}\le \sum_k^2 l_k\times N_k\times n_k&k\in {sc,dc}\\
+    CI_j=\frac{d_{j total}}{n_{dc}\times N_{dc}+n_{sc}\times N_{sc}}\le 1&\\
+    P_{eff}=\frac{n_{dc}}{n_{sc}}&\\
+    n_{sc}\le \frac{N_j}{N_{sc}}&\\
+    n_{dc},n_{sc}\ge 0(int)&\\
+    \end{array}
+    \right.
+\end{equation}
+
+%第三块代码：在文字前面加黑点
+
+
+
+%第四块代码：导入图片
+\begin{figure}[ht]
+    \centering
+    \includegraphics[scale=0.6]{standard.PNG}
+    \caption{evaluation criterion}
+    \label{1}
+\end{figure}
+
+%第五块代码：绘制表格
+\begin{table}[ht]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|}
+\toprule
+Year&Original value&Predictive value&Residual&Relative error&Level error\\
+\midrule
+2014&0.000130974&0.000130974&0&0&0\\
+\midrule
+2015&0.000222056&0.000168762&0.000053294&0.057798804&-0.116294912\\
+\bottomrule
+\end{tabular}
+\caption{Grey prediction model data checklist}
+\end{table}
+
+%第六块代码：表格2
+\begin{table}[!htbp]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\multicolumn{3}{|c|}{学生信息}\\ % 用\multicolumn{3}表示横向合并三列 
+                        % |c|表示居中并且单元格两侧添加竖线 最后是文本
+\hline
+姓名&学号&性别\\
+\hline
+Jack& 001& Male\\
+\hline
+Angela& 002& Female\\
+\hline
+\end{tabular}
+\caption{这是一张三线表}
+\end{table}
+
+%加数字
+\begin{enumerate}
+    \item We do ...
+    \item We do ...
+    \item We do ...
+\end{enumerate}
